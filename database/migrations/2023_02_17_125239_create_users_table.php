@@ -12,22 +12,23 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-/*            $table->string('username')->unique()->nullable();*/
+            $table->string('username')->unique()->nullable();
             $table->string('email')->nullable();
-/*            $table->string('usertype');
+            $table->string('usertype');
             $table->date('bdate');
             $table->string('gender')->nullable();
-            $table->string('phone')();
-            $table->string('image')();
-            $table->string('province')();
-            $table->string('city')();
-            $table->string('street')();*/
+            $table->string('prefix');
+            $table->string('phone');
+//            $table->string('image')->;
+            $table->string('province');
+            $table->string('city');
+            $table->string('street');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+            $table->boolean('moreInf')->default(0);
         });
     }
 

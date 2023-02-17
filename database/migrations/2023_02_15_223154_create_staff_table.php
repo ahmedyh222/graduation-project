@@ -16,20 +16,19 @@ return new class extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
-            $table->string('username')->unique()->nullable();
+            $table->string('username')->unique();
             $table->string('name')->nullable();
-            $table->string('staff_type')->nullable();
-            $table->string('specialty')->nullable();
-            $table->string('age');
-            $table->string('rate')->default(0);
-            $table->string('current_hospital');
-            $table->string('graduation_year');
-            $table->string('experience_years');
-            $table->string('experiences');
-            $table->string('about');
-            $table->string('salary');
-            $table->string('certificate_count');
+            $table->string('staff_type');
+            $table->string('specialty');
+            $table->string('age')->nullable();;
+            $table->string('rate')->default(0)->nullable();;
+            $table->string('current_hospital')->nullable();;
+            $table->string('graduation_year')->nullable();;
+            $table->string('experience_years')->nullable();;
+            $table->string('experiences')->nullable();;
+            $table->string('about')->nullable();;
+            $table->string('salary')->nullable();;
+            $table->string('certificate_count')->nullable();;
 
         });
     }

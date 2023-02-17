@@ -35,7 +35,9 @@ class User extends Authenticatable
         'image',
         'province',
         'city',
-        'street'
+        'street',
+        'prefix',
+        'moreInf'
     ];
     public function staff()
     {
