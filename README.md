@@ -9,8 +9,9 @@
 
 ## About Finished untill now
 
-there is three APIs
-
+### - There is three APIs checkuser , Adduser, Login
+### - Database needed untill this step
+### - Needed Packages installed
 to run this project
 
 ### 1- php artisan serve
