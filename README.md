@@ -13,8 +13,8 @@ there is three APIs
 
 to run this project
 
-1- php artisan serve
-2- http://127.0.0.1:8000/api/req/adduser       which needs this data
+### 1- php artisan serve
+### 2- http://127.0.0.1:8000/api/req/adduser       which needs this data
         {
             "email":"ahm",
             "name":"a",
@@ -28,10 +28,10 @@ to run this project
             "staff_type" : "doctor",
             "specialty" : "s;"
         }
-3-http://127.0.0.1:8000/api/req/login
+### 3-http://127.0.0.1:8000/api/req/login
         {
              "password" : "1111",
              "username" : "ahmed s",
         }
-4-http://127.0.0.1:8000/api/chkuname/ahm26 
+### 4-http://127.0.0.1:8000/api/chkuname/ahm26 
 where(ahm26) is the username
