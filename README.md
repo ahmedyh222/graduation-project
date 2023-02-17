@@ -8,10 +8,12 @@
 </p>
 
 ## About Finished untill now
-
-### - There is three APIs checkuser , Adduser, Login
-### - Database needed untill this step
-### - Needed Packages installed
+```
+### * There is three APIs checkuser , Adduser, Login
+### * Database needed untill this step
+### * Needed Packages installed
+```
+<hr>
 to run this project
 
 ### 1- php artisan serve
