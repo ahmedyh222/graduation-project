@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class authController extends Controller
 {
     public function check_user($username){
         $users = User::where('username',$username)->first();
-/*        return response(compact('users'));*/
+        /*        return response(compact('users'));*/
 
         if(!$users){
             $isExist=1;
@@ -47,13 +48,13 @@ class authController extends Controller
         $status=200;
 
 
-/*        if($request->image) {
-            $temp = $request->image;
-            $imgname=time().'.'.$temp->getClientOriginalExtension();
-            $request->image->move('User', $imgname);
-        }*/
+        /*        if($request->image) {
+                    $temp = $request->image;
+                    $imgname=time().'.'.$temp->getClientOriginalExtension();
+                    $request->image->move('User', $imgname);
+                }*/
 
-/*        ******************** To make all this data optional for user table *********************/
+        /*        ******************** To make all this data optional for user table *********************/
         if($request->province) {
             $uprov = $request->province;
         }
@@ -96,7 +97,7 @@ class authController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-           'username' => $data['username'],
+            'username' => $data['username'],
             'password' => bcrypt($data['password']),
             'usertype' => $request->usertype,
             'bdate' => $request->bdate,
@@ -107,7 +108,7 @@ class authController extends Controller
             'city' => $ucity,
             'street' => $ustreet,
             'moreInf'=>$more
-/*             'image' =>$imgname*/
+            /*             'image' =>$imgname*/
         ]);
 
         if($more == true) {
@@ -156,9 +157,12 @@ class authController extends Controller
             } else {
                 $scertificate_count = 0;
             }
+            $data = User::where('username',$username)->first();
+            $user_id=$data->id;
+
             $staff = Staff::create([
-                'id' =>5,
                 'name' => $data['name'],
+                'user_id'=>$user_id,
                 'username' => $data['username'],
                 'staff_type' => $request->staff_type,
                 'specialty' => $request->specialty,
@@ -191,7 +195,7 @@ class authController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-/*            $request->session()->regenerate();*/
+            /*            $request->session()->regenerate();*/
 
             $status=200;
 
@@ -200,7 +204,7 @@ class authController extends Controller
             $user=User::where('username',$username)->first();
             return response(compact('status','user'));
         }
-    $msg="Incorrect username or password";
+        $msg="Incorrect username or password";
         $status=400;
         return response(compact('status','msg'));
 

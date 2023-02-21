@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id')->default(0);
+
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('username')->unique();
             $table->string('name')->nullable();
             $table->string('staff_type');
@@ -29,7 +32,6 @@ return new class extends Migration
             $table->string('about')->nullable();;
             $table->string('salary')->nullable();;
             $table->string('certificate_count')->nullable();;
-
         });
     }
 

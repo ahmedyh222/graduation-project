@@ -25,6 +25,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'id',
         'email',
         'password',
         'username',
@@ -39,10 +40,7 @@ class User extends Authenticatable
         'prefix',
         'moreInf'
     ];
-    public function staff()
-    {
-        return $this->hasOne(Staff::class);
-    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -54,7 +52,10 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
-
+    public function staff()
+    {
+        return $this->hasOne(Staff::class);
+    }
     /**
      * The attributes that should be cast.
      *
