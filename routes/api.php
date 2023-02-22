@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\authController;
+use App\Http\Controllers\userController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/chkuname/{username}', [authController::class, 'check_user']);
 Route::post('/req/adduser', [authController::class, 'adduser']);
 Route::post('/req/login', [authController::class, 'login']);
+Route::get('/req/showDoctors', [userController::class, 'get_doctors']);
+
 /*Route::post('/logout', [AuthController::class, 'logout']);*/
