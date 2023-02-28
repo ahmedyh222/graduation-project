@@ -17,24 +17,21 @@
 to run this project
 
 ### 1- php artisan serve
-### 2- http://127.0.0.1:8000/api/req/adduser       which needs this data
+### 2- http://127.0.0.1:8000/api/adduser       which needs this data
+    {
+        "email": "ahm",
+        "name": "a",
+        "password": "1111",
+        "username": "ahmed2626",
+        "usertype": "doctor",
+        "moreInf": true,
+        "staff_type": "nsidlxk",
+        "specialty" : "Engineer"
+    }
+### 3-http://127.0.0.1:8000/api/login
         {
-            "email":"ahm",
-            "name":"a",
-            "password" : "1111",
-            "username" : "ahmed s",
-            "image" : "",
-            "usertype": "doctor",
-            "bdate" : "2000-02-26",
-            "province" :"dsvd",
-            "moreInf": true,
-            "staff_type" : "doctor",
-            "specialty" : "s;"
-        }
-### 3-http://127.0.0.1:8000/api/req/login
-        {
-             "password" : "1111",
-             "username" : "ahmed s",
+             "password": "111",
+              "username": "ahmed2626"
         }
 ### 4-http://127.0.0.1:8000/api/chkuname/ahm26 
 where(ahm26) is the username
