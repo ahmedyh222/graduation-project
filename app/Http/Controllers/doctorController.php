@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Staff;
 use Illuminate\Http\Request;
 
-class userController extends Controller
+class doctorController extends Controller
 {
-
+    //
 }

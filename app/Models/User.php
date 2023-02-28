@@ -29,11 +29,11 @@ class User extends Authenticatable
         'email',
         'password',
         'username',
-        'usertype',
+        'user_type',
         'bdate',
         'gender',
         'phone',
-        'image',
+        'img_url',
         'province',
         'city',
         'street',
@@ -54,7 +54,7 @@ class User extends Authenticatable
     ];
     public function staff()
     {
-        return $this->hasOne(Staff::class);
+        return $this->hasOne(Doctor::class);
     }
     /**
      * The attributes that should be cast.

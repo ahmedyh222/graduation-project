@@ -46,138 +46,47 @@ class authController extends Controller
         }
 
         $status=200;
-
-
-        /*        if($request->image) {
-                    $temp = $request->image;
-                    $imgname=time().'.'.$temp->getClientOriginalExtension();
-                    $request->image->move('User', $imgname);
-                }*/
-
-        /*        ******************** To make all this data optional for user table *********************/
-        if($request->province) {
-            $uprov = $request->province;
-        }
-        else {
-            $uprov = "none";
-        }
-
-        if($request->city) {
-            $ucity = $request->city;
-        }
-        else {
-            $ucity = "none";
-        }
-        if($request->street) {
-            $ustreet = $request->street;
-        }
-        else {
-            $ustreet = "none";
-        }
-        if($request->prefix) {
-            $uprefix = $request->prefix;
-        }
-        else {
-            $uprefix = "none";
-        }
-        if($request->phone) {
-            $uphone = $request->phone;
-        }
-        else {
-            $uphone = "none";
-        }
-
-
-        if($request->moreInf) {
-            $more = $request->moreInf;
-        }
-        else {
-            $more = 0;
-        }
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'username' => $data['username'],
             'password' => bcrypt($data['password']),
-            'usertype' => $request->usertype,
+            'user_type' => $request->usertype,
             'bdate' => $request->bdate,
             'gender' => $request->gender,
-            'prefix' => $uprefix,
-            'phone' => $uphone,
-            'province' => $uprov,
-            'city' => $ucity,
-            'street' => $ustreet,
-            'moreInf'=>$more
-            /*             'image' =>$imgname*/
+            'prefix' =>  $request->prefix,
+            'phone' => $request->phone,
+            'province' => $request->province,
+            'city' => $request->city,
+            'street' => $request->street,
+            'moreInf'=>$request->moreInf,
+            'img_url' =>$request->img_url
         ]);
 
-        if($more == true) {
-            if ($request->age) {
-                $sage = $request->age;
-            } else {
-                $sage = "none";
-            }
-            if ($request->rate) {
-                $srate = $request->rate;
-            } else {
-                $srate = 0;
-            }
-            if ($request->current_hospital) {
-                $scurrent_hospital = $request->current_hospital;
-            } else {
-                $scurrent_hospital = "none";
-            }
-            if ($request->graduation_year) {
-                $sgraduation_year = $request->graduation_year;
-            } else {
-                $sgraduation_year = "none";
-            }
-            if ($request->experience_years) {
-                $sexperience_years = $request->experience_years;
-            } else {
-                $sexperience_years = "none";
-            }
-            if ($request->experiences) {
-                $sexperiences = $request->experiences;
-            } else {
-                $sexperiences = "none";
-            }
-            if ($request->about) {
-                $sabout = $request->about;
-            } else {
-                $sabout = "none";
-            }
-            if ($request->salary) {
-                $ssalary = $request->salary;
-            } else {
-                $ssalary = "none";
-            }
-            if ($request->certificate_count) {
-                $scertificate_count = $request->certificate_count;
-            } else {
-                $scertificate_count = 0;
-            }
+        if($request->moreInf == true) {
+
             $data = User::where('username',$username)->first();
             $user_id=$data->id;
 
-            $staff = Staff::create([
+            $doctors = Doctor::create([
                 'name' => $data['name'],
                 'user_id'=>$user_id,
                 'username' => $data['username'],
                 'staff_type' => $request->staff_type,
                 'specialty' => $request->specialty,
-                'age' => $sage,
-                'rate' => $srate,
-                'current_hospital' => $scurrent_hospital,
-                'graduation_year' => $sgraduation_year,
-                'experience_years' => $sexperience_years,
-                'experiences' => $sexperiences,
-                'about' => $sabout,
-                'salary' => $ssalary,
-                'certificate_count' => $scertificate_count,
+                'age' => $request->age,
+                'num_rate' => $request->num_rate,
+                'rate' => $request->rate,
+                'current_hospital' => $request->current_hospital,
+                'graduation_year' => $request->graduation_year,
+                'experience_years' => $request->experience_years,
+                'experiences' => $request->experiences,
+                'about' => $request->about,
+                'salary' => $request->salary,
+                'certificate_count' => $request->certificate_count,
             ]);
             $token = $user->createToken('main')->plainTextToken;
-            return response(compact('user', 'token','status','staff'));
+            return response(compact('user', 'token','status','doctors'));
         }
         $token = $user->createToken('main')->plainTextToken;
         return response(compact('user', 'token','status'));

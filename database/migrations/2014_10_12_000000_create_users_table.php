@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('username')->unique()->nullable();
             $table->string('email')->nullable();
-            $table->string('usertype');
+            $table->string('user_type');
             $table->date('bdate')->nullable();
             $table->string('gender')->nullable();
             $table->string('prefix')->nullable();
             $table->string('phone')->nullable();
-//            $table->string('image')->;
+            $table->text('img_url')->nullable();
             $table->string('province')->nullable();
             $table->string('city')->nullable();
             $table->string('street')->nullable();
