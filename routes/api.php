@@ -23,5 +23,5 @@ Route::get('/chkuname/{username}', [authController::class, 'check_user']);
 Route::post('/adduser', [authController::class, 'adduser']);
 Route::post('/login', [authController::class, 'login']);
 Route::get('/users/{id}', 'UserController@getUserData');
-
+Route::get('/doctor/{id}', 'doctorController@getDoctorData');
 /*Route::post('/logout', [AuthController::class, 'logout']);*/
