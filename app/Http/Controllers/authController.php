@@ -40,12 +40,18 @@ class authController extends Controller
         $users = User::where('username',$username)->first();
 
         if($users){
-            $status=400;
-            $msg="Sorry! choose another username";
-            return response(compact( 'status','msg'));
+            $state="bad request";
+            $message="inf. not found";
+            $data = [
+                'err' => [
+                'code' => "ER_DUP_ENTRY"
+                ]
+
+            ];
+            return response(compact('state','message','data'),400);
         }
 
-        $status=200;
+        $state="good, ok";
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -86,17 +92,22 @@ class authController extends Controller
                 'certificate_count' => $request->certificate_count,
             ]);
             $token = $user->createToken('main')->plainTextToken;
-            return response(compact('user', 'token','status','doctors'));
-        }
-        $token = $user->createToken('main')->plainTextToken;
-        return response(compact('user', 'token','status'));
-    }
+            $message="information retreived successfully";
+            $data = [
+                'user_id'=>$user_id
+                ];
 
+            return response(compact('state', 'message','data'),200);
+        }
+        $message="information retreived successfully";
+        $token = $user->createToken('main')->plainTextToken;
+        return response(compact('state', 'message','data'),200);
+    }
+/*
+ * ******************************************** login ********************************************
+ */
     public function login(Request $request){
         $username=$request->username;
-
-
-        /*        return response(compact('username'));*/
 
         $credentials = $request->validate([
             'username' => ['required'],
@@ -104,18 +115,31 @@ class authController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            /*            $request->session()->regenerate();*/
-
-            $status=200;
-
+            $state= "good, ok";
+            $message= "information retreived successfully";
             Auth::loginUsingId(1);
-
-            $user=User::where('username',$username)->first();
-            return response(compact('status','user'));
+            $user = User::where('username',$username)->first();
+            $user_id=$user->id;
+            $data = [
+                'isVerified'=>1,
+                "user_id"=> $user_id
+            ];
+            return response(compact('state','message','data'),200);
         }
-        $msg="Incorrect username or password";
-        $status=400;
-        return response(compact('status','msg'));
-
+        $user = User::where('username',$username)->first();
+        if(!$user) {
+            $state = "bad request";
+            $message = "Incorrect username";
+            $data = [
+                'isExist'=>0
+            ];
+            return response(compact('state', 'message','data'),400);
+        }
+        $state = "bad request";
+        $message = "Incorrect password";
+        $data = [
+            'isVerified'=>0
+        ];
+        return response(compact('state', 'message','data'),400);
     }
 }
