@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class userController extends Controller
 {
-  public function getUserData($user_id)
+   public function getUserData($user_id)
     {
         $user = User::where('id', $user_id)->first();
 
@@ -17,7 +17,7 @@ class userController extends Controller
             'data' => [
                 'user' => [
                     'user_id' => $user->id,
-                    'nick_name' => $user->nick_name,
+                    'nick_name' => $user->name,
                     'user_type' => $user->user_type,
                     'bdate' => $user->bdate,
                     'gender' => $user->gender,
