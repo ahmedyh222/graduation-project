@@ -35,3 +35,7 @@ to run this project
         }
 ### 4-http://127.0.0.1:8000/api/chkuname/ahm26 
 where(ahm26) is the username
+
+
+### 5-http://127.0.0.1:8000/api//feedback/ahm26
+where(ahm26) is the username
