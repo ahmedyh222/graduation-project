@@ -22,5 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/chkuname/{username}', [authController::class, 'check_user']);
 Route::post('/adduser', [authController::class, 'adduser']);
 Route::post('/login', [authController::class, 'login']);
+Route::get('/feedback/{username}',[feedbackController::class,'filter_feedback']);
+
 
 /*Route::post('/logout', [AuthController::class, 'logout']);*/
